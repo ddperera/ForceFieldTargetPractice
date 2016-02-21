@@ -12,25 +12,21 @@ public class GravityFieldBehaviour : MonoBehaviour {
 	void Start () {
 		bulletRb = GameObject.FindGameObjectWithTag("Bullet").GetComponent<Rigidbody2D>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	}
 
-	void OnTriggerEnter2D(Collider2D coll)
+	void OnTriggerStay2D(Collider2D coll)
 	{
-		Vector2 vel;
-		vel.x = bulletRb.velocity.x;
-		vel.y = bulletRb.velocity.y;
-		switch(fieldDir)
-		{
-		case Direction.DOWN:
-			vel.y = vel.y - gravStrength;
-			break;
-		case Direction.UP:
-			vel.y = vel.y + gravStrength;
-			break;
-		}
-		bulletRb.velocity = vel;
+        Vector2 force = Vector2.zero;
+
+        switch (fieldDir)
+        {
+            case Direction.UP:
+                force = new Vector2(0, gravStrength + Mathf.Abs(bulletRb.velocity.y));
+                break;
+            case Direction.DOWN:
+                force = new Vector2(0, -(gravStrength + Mathf.Abs(bulletRb.velocity.y)));
+                break;
+        }
+
+        bulletRb.AddForce(force);
 	}
 }

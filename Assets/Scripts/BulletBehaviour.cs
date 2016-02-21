@@ -1,70 +1,78 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
-public class BulletBehaviour : MonoBehaviour {
+public class BulletBehaviour : MonoBehaviour
+{
 
-	public Rigidbody2D rb;
-	public float moveSpeed = 1.0f;
-	private enum State{AIM, FIRED};
-	private State curState = State.AIM;
+    public Rigidbody2D rb;
+    public float moveSpeed = 1.0f;
+    private enum State { AIM, FIRED };
+    private State curState = State.AIM;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    // Use this for initialization
+    void Start()
+    {
 
-	void FixedUpdate() 
-	{
-		switch(curState)
-		{
-		case State.AIM:
-			if(Input.GetAxisRaw("Vertical") < 0)
-			{
-				Vector2 vel;
-				vel.x = 0.0f;
-				vel.y = -moveSpeed/2.0f;
+    }
 
-				rb.velocity = vel;
-			}
-			else if (Input.GetAxisRaw("Vertical") > 0)
-			{
-				Vector2 vel;
-				vel.x = 0.0f;
-				vel.y = moveSpeed/2.0f;
+    // Update is called once per frame
+    void Update()
+    {
 
-				rb.velocity = vel;
-			}
-			else
-			{
-				Vector2 vel;
-				vel.x = 0.0f;
-				vel.y = 0.0f;
+    }
 
-				rb.velocity = vel;
-			}
+    void FixedUpdate()
+    {
+        switch (curState)
+        {
+            case State.AIM:
+                if (Input.GetAxisRaw("Vertical") < 0)
+                {
+                    Vector2 vel;
+                    vel.x = 0.0f;
+                    vel.y = -moveSpeed / 2.0f;
 
-			if(Input.GetAxisRaw("Fire1") > 0)
-			{
-				Fire();
-			}
-			break;
-		case State.FIRED:
-			break;
-		}
-	}
+                    rb.velocity = vel;
+                }
+                else if (Input.GetAxisRaw("Vertical") > 0)
+                {
+                    Vector2 vel;
+                    vel.x = 0.0f;
+                    vel.y = moveSpeed / 2.0f;
 
-	void Fire()
-	{
-		curState = State.FIRED;
-		Vector2 vel;
-		vel.x = moveSpeed;
-		vel.y = 0.0f;
+                    rb.velocity = vel;
+                }
+                else
+                {
+                    Vector2 vel;
+                    vel.x = 0.0f;
+                    vel.y = 0.0f;
 
-		rb.velocity = vel;
-	}
+                    rb.velocity = vel;
+                }
+
+                if (Input.GetAxisRaw("Fire1") > 0)
+                {
+                    Fire();
+                }
+                break;
+            case State.FIRED:
+                if (Input.GetAxisRaw("Submit") > 0)
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                }
+                break;
+        }
+    }
+
+    void Fire()
+    {
+        curState = State.FIRED;
+        Vector2 vel;
+        vel.x = moveSpeed;
+        vel.y = 0.0f;
+
+        rb.velocity = vel;
+    }
 }

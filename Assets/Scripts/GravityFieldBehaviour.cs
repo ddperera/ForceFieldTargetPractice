@@ -7,6 +7,7 @@ public class GravityFieldBehaviour : MonoBehaviour {
 	public float gravStrength;
 	public enum Direction {UP, DOWN};
 	public Direction fieldDir;
+
 	// Use this for initialization
 	void Start () {
 		bulletRb = GameObject.FindGameObjectWithTag("Bullet").GetComponent<Rigidbody2D>();

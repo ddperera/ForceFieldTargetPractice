@@ -2,16 +2,33 @@
 using System.Collections;
 
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(GravityFieldBehaviour))]
 public class SpriteTiler : MonoBehaviour {
 
     public float gridX = 0.0f;
     public float gridY = 0.0f;
 
+    public Sprite[] directionSprites;
+    public Sprite borderSprite;
+
     SpriteRenderer sprite;
+    GravityFieldBehaviour gfb;
 
     void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
+        gfb = GetComponent<GravityFieldBehaviour>();
+
+        switch (gfb.fieldDir)
+        {
+            case GravityFieldBehaviour.Direction.UP:
+                sprite.sprite = directionSprites[0];
+                break;
+            case GravityFieldBehaviour.Direction.DOWN:
+                sprite.sprite = directionSprites[1];
+                break;
+        }
+
         Vector2 spriteSize = new Vector2(sprite.bounds.size.x / transform.localScale.x, sprite.bounds.size.y / transform.localScale.y);
         Vector3 scale = Vector3.one;
 
@@ -35,9 +52,9 @@ public class SpriteTiler : MonoBehaviour {
         childSprite.sprite = sprite.sprite;
 
         GameObject child;
-        for (int i = 1, h = Mathf.RoundToInt(sprite.bounds.size.y); i * spriteSize.y < h; i++)
+        for (int i = 0, h = Mathf.RoundToInt(sprite.bounds.size.y); i * spriteSize.y < h; i++)
         {
-            for (int j = 1, w = Mathf.RoundToInt(sprite.bounds.size.x); j * spriteSize.x < w; j++)
+            for (int j = 0, w = Mathf.RoundToInt(sprite.bounds.size.x); j * spriteSize.x < w; j++)
             {
                 child = Instantiate(childPrefab) as GameObject;
                 child.transform.position = transform.position - (new Vector3(spriteSize.x * j, spriteSize.y * i, 0));
@@ -47,7 +64,7 @@ public class SpriteTiler : MonoBehaviour {
         }
 
         Destroy(childPrefab);
-        sprite.enabled = false;
+        sprite.sprite = borderSprite;
     }
 
 	// Use this for initialization

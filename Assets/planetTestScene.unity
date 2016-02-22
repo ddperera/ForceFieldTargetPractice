@@ -124,10 +124,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 11401402, guid: e1354d478cf0f694f90c79e395f47f5a, type: 2}
-      propertyPath: gravConstant
-      value: 15
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e1354d478cf0f694f90c79e395f47f5a, type: 2}
   m_IsPrefabParent: 0
@@ -143,6 +139,7 @@ GameObject:
   - 92: {fileID: 655600273}
   - 124: {fileID: 655600272}
   - 81: {fileID: 655600271}
+  - 114: {fileID: 655600276}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -217,6 +214,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &655600276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 655600270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3ddc8541f92645aeaff638064e8ef7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MenuSkin: {fileID: 11400000, guid: 64da27c5a1dd94ca69967212779abf29, type: 2}
 --- !u!1001 &1293074285
 Prefab:
   m_ObjectHideFlags: 0
@@ -263,24 +272,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c0b81c148f75e6e4197ac3519547badf, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1530179579 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 112536, guid: e1354d478cf0f694f90c79e395f47f5a, type: 2}
-  m_PrefabInternal: {fileID: 639294623}
---- !u!58 &1530179580
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1530179579}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!1 &1617196279
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,6 +284,7 @@ GameObject:
   - 114: {fileID: 1617196283}
   - 50: {fileID: 1617196282}
   - 61: {fileID: 1617196284}
+  - 96: {fileID: 1617196285}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Bullet
@@ -386,3 +378,50 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
+--- !u!96 &1617196285
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1617196279}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Time: 5
+  m_StartWidth: 0.1
+  m_EndWidth: 0.1
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: 0.1
+  m_Autodestruct: 0

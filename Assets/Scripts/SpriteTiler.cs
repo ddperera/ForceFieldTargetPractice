@@ -34,14 +34,14 @@ public class SpriteTiler : MonoBehaviour {
 
         if (0.0f != gridX)
         {
-            float width = sprite.bounds.size.x / gridX;
+            float width = Mathf.RoundToInt(sprite.bounds.size.x) / gridX;
             scale.x = width / spriteSize.x;
             spriteSize.x = width;
         }
 
         if (0.0f != gridY)
         {
-            float height = sprite.bounds.size.y / gridY;
+            float height = Mathf.RoundToInt(sprite.bounds.size.y) / gridY;
             scale.y = height / spriteSize.y;
             spriteSize.y = height;
         }

@@ -11,6 +11,7 @@ GameObject:
   - 212: {fileID: 21225438}
   - 114: {fileID: 11401402}
   - 58: {fileID: 5827162}
+  - 58: {fileID: 5817480}
   m_Layer: 0
   m_Name: Planet
   m_TagString: Untagged
@@ -25,11 +26,25 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 112536}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.8497577, y: 3.5658238, z: 0}
+  m_LocalPosition: {x: 0.908483, y: 0.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!58 &5817480
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112536}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!58 &5827162
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -55,7 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8236b3af0fac74fae81a4a1e310bcd30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravConstant: 1
+  gravConstant: 15
 --- !u!212 &21225438
 SpriteRenderer:
   m_ObjectHideFlags: 1

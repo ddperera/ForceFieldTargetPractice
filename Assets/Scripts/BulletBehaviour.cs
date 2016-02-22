@@ -9,17 +9,28 @@ public class BulletBehaviour : MonoBehaviour
     public float moveSpeed = 1.0f;
     private enum State { AIM, FIRED };
     private State curState = State.AIM;
+	private Vector2 initialPos;
+	private TrailRenderer tr;
 
     // Use this for initialization
     void Start()
     {
-
+		initialPos = transform.position;
+		tr = GetComponent<TrailRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+		switch(curState)
+		{
+		case State.AIM:
+			tr.enabled = false;
+			break;
+		case State.FIRED:
+			tr.enabled = true;
+			break;
+		}
     }
 
     void FixedUpdate()
@@ -60,7 +71,8 @@ public class BulletBehaviour : MonoBehaviour
             case State.FIRED:
                 if (Input.GetAxisRaw("Submit") > 0)
                 {
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+					curState = State.AIM;
+					transform.position = initialPos;
                 }
                 break;
         }

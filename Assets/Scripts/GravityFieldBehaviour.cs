@@ -16,7 +16,7 @@ public class GravityFieldBehaviour : MonoBehaviour {
 	void OnTriggerStay2D(Collider2D coll)
 	{
         Vector2 force = Vector2.zero;
-
+		bulletRb = coll.attachedRigidbody;
         switch (fieldDir)
         {
             case Direction.UP:

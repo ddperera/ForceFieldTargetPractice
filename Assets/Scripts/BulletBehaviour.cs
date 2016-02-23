@@ -7,8 +7,8 @@ public class BulletBehaviour : MonoBehaviour
 
     public Rigidbody2D rb;
     public float moveSpeed = 1.0f;
-    private enum State { AIM, FIRED };
-    private State curState = State.AIM;
+    public enum State { AIM, FIRED };
+    public State curState = State.AIM;
 	private Vector2 initialPos;
 	private TrailRenderer tr;
 
@@ -16,21 +16,13 @@ public class BulletBehaviour : MonoBehaviour
     void Start()
     {
 		initialPos = transform.position;
-		tr = GetComponent<TrailRenderer>();
+		curState = State.AIM;
     }
 
     // Update is called once per frame
     void Update()
     {
-		switch(curState)
-		{
-		case State.AIM:
-			tr.enabled = false;
-			break;
-		case State.FIRED:
-			tr.enabled = true;
-			break;
-		}
+		
     }
 
     void FixedUpdate()
@@ -69,11 +61,6 @@ public class BulletBehaviour : MonoBehaviour
                 }
                 break;
             case State.FIRED:
-                if (Input.GetAxisRaw("Submit") > 0)
-                {
-					curState = State.AIM;
-					transform.position = initialPos;
-                }
                 break;
         }
     }
@@ -81,6 +68,11 @@ public class BulletBehaviour : MonoBehaviour
     void Fire()
     {
         curState = State.FIRED;
+		tr = gameObject.AddComponent<TrailRenderer>();
+		tr.startWidth = 0.1f;
+		tr.endWidth = 0.1f;
+		tr.autodestruct = true;
+		tr.time = 100.0f;
         Vector2 vel;
         vel.x = moveSpeed;
         vel.y = 0.0f;

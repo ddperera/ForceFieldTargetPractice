@@ -20,8 +20,10 @@ public class PlanetBehaviour : MonoBehaviour {
 
 	void OnTriggerStay2D(Collider2D coll)
 	{
+		bullet = coll.gameObject;
 		Vector2 vecToBullet = bullet.transform.position - gameObject.transform.position;
 
+		bulletRb = coll.attachedRigidbody;
 		bulletRb.AddForce(-vecToBullet.normalized * gravConstant / (vecToBullet.sqrMagnitude));
 	}
 

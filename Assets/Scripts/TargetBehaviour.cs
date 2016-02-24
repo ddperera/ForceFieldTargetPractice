@@ -9,10 +9,14 @@ public class TargetBehaviour : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		ps = GetComponent<ParticleSystem>();
-		sceneNames = new string[3];
+		if (ps.isPlaying) {
+			ps.Stop ();
+		}
+		sceneNames = new string[4];
 		sceneNames[0] = "aimTestScene";
 		sceneNames[1] = "bulletGravFieldTestScene";
 		sceneNames[2] = "planetTestScene";
+		sceneNames[3] = "endScene";
 	}
 	
 	// Update is called once per frame
@@ -22,14 +26,17 @@ public class TargetBehaviour : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll)
 	{
-		ps.Play();
+		if (!ps.isPlaying) {
+			ps.Play ();
+		}
+		Debug.Log ("Playing at collision: " + ps.isPlaying);
 		StartCoroutine("LoadNextLevel");
 	}
 
 	IEnumerator LoadNextLevel()
 	{
 		yield return new WaitForSeconds(3.0f);
-
 		Application.LoadLevel(sceneNames[sceneIndex + 1]);
+
 	}
 }

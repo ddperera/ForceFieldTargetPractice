@@ -11,3 +11,5 @@ EditorBuildSettings:
     path: Assets/bulletGravFieldTestScene.unity
   - enabled: 1
     path: Assets/planetTestScene.unity
+  - enabled: 1
+    path: Assets/endScene.unity

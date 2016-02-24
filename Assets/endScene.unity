@@ -459,9 +459,11 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Made by Jonathan Root, David Perera, and Yuqi Hou
+  m_Text: 'Made by Jonathan Root, David Perera, and Yuqi Hou
+
+    Press Enter to restart'
 --- !u!222 &1770772718
 CanvasRenderer:
   m_ObjectHideFlags: 0
